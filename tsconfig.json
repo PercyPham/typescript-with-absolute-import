@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "outDir": "./build/compiled-ts",
+    "strict": true,
+    "moduleResolution": "node",
+    "baseUrl": "src",
+    "paths": {
+      "@abc": ["./utils/abc"],
+      "@abc/*": ["./utils/abc/*"],
+      "@log": ["./utils/log"]
+    },
+    "esModuleInterop": true
+  }
+}

@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "start": "node build/dist",
-    "dev": "",
+    "dev": "nodemon",
     "build": "tsc && yarn babel:transpile && yarn babel:transpile",
     "babel:transpile": "babel build/compiled-ts --out-dir build/dist",
     "clean": "rimraf build"
