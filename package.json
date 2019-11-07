@@ -7,7 +7,7 @@
     "start": "node build/dist",
     "dev": "nodemon",
     "build": "tsc && yarn babel:transpile && yarn babel:transpile",
-    "babel:transpile": "babel build/compiled-ts --out-dir build/dist",
+    "babel:transpile": "babel build/compiled-ts --out-dir build/dist --copy-files",
     "clean": "rimraf build"
   },
   "devDependencies": {
