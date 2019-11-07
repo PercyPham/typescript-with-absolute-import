@@ -1,0 +1,21 @@
+{
+  "name": "typescript-with-absolute-import",
+  "version": "1.0.0",
+  "author": "Percy Pham <hungpm.percy@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "node build/dist",
+    "dev": "",
+    "build": "tsc && yarn babel:transpile && yarn babel:transpile",
+    "babel:transpile": "babel build/compiled-ts --out-dir build/dist",
+    "clean": "rimraf build"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.7.0",
+    "@babel/core": "^7.7.2",
+    "@babel/node": "^7.7.0",
+    "babel-plugin-module-resolver": "^3.2.0",
+    "nodemon": "^1.19.4",
+    "typescript": "^3.7.2"
+  }
+}
