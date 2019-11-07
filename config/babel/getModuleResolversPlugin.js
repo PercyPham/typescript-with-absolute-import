@@ -1,7 +1,10 @@
 const path = require("path");
 const tsconfig = require("../../tsconfig.json");
 
-const DIST_PATH = "./build/dist"; // This is relative to root of project
+const isDev = !["production", "staging"].includes(process.env.NODE_ENV);
+
+// This is relative to root of project
+const DIST_PATH = isDev ? "./build/compiled-ts" : "./build/dist";
 
 const getAliasNamesWithoutAsteriskFromTsConfig = () => {
   if (!tsconfig || !tsconfig.compilerOptions || !tsconfig.compilerOptions.paths)
