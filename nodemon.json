@@ -1,6 +1,6 @@
 {
   "ignore": ["node_modules"],
   "watch": ["src", "yarn.lock"],
-  "exec": "tsc && babel-node build/compiled-ts",
+  "exec": "yarn build && node build/dist",
   "ext": "ts"
 }

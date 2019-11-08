@@ -1,10 +1,20 @@
 const path = require("path");
 const tsconfig = require("../../tsconfig.json");
 
-const isDev = !["production", "staging"].includes(process.env.NODE_ENV);
+const isTesting = process.env.NODE_ENV === "test";
+
+const baseUrlInTsConfig = (function() {
+  if (
+    !tsconfig ||
+    !tsconfig.compilerOptions ||
+    !tsconfig.compilerOptions.baseUrl
+  )
+    return ".";
+  return tsconfig.compilerOptions.baseUrl;
+})();
 
 // This is relative to root of project
-const DIST_PATH = isDev ? "./build/compiled-ts" : "./build/dist";
+const resolvedRootPath = isTesting ? baseUrlInTsConfig : "./build/dist";
 
 const getAliasNamesWithoutAsteriskFromTsConfig = () => {
   if (!tsconfig || !tsconfig.compilerOptions || !tsconfig.compilerOptions.paths)
@@ -20,7 +30,7 @@ const getAliasNamesWithoutAsteriskFromTsConfig = () => {
 
 const genResolvedRelativePathToRootOf = aliasName => {
   const aliasPathInTsConfig = tsconfig.compilerOptions.paths[aliasName][0];
-  const resolvedPath = `./${path.join(DIST_PATH, aliasPathInTsConfig)}`;
+  const resolvedPath = `./${path.join(resolvedRootPath, aliasPathInTsConfig)}`;
   return resolvedPath;
 };
 
@@ -37,7 +47,7 @@ const getModuleResolversPlugin = () => {
   const moduleResolversPlugin = [
     "module-resolver",
     {
-      root: [DIST_PATH],
+      root: [resolvedRootPath],
       alias
     }
   ];
